@@ -1,0 +1,900 @@
+{
+	"info": {
+		"_postman_id": "ffcd6ee2-065a-4e52-85df-d3a179d42be2",
+		"name": "Bank-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21675911",
+		"_collection_link": "https://martian-equinox-77995.postman.co/workspace/My-Workspace~719499f8-8f51-464e-8bfb-b66654baf123/collection/21675911-ffcd6ee2-065a-4e52-85df-d3a179d42be2?action=share&source=collection_link&creator=21675911"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Listar clientes",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Crear cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Don Quijote de la Mancha\",\r\n  \"dni\": \"22164851\",\r\n  \"type\": \"personal\",\r\n  \"subtype\": \"STANDARD\",\r\n  \"isClient\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar cliente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pedro Jose Martinez Gomez\",\r\n    \"dni\": 94658115,\r\n    \"type\": \"personal\",\r\n    \"subtype\": \"VIP\",\r\n    \"isClient\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/client/685b9eb0af9ce47bca28e7b7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"685b9eb0af9ce47bca28e7b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/client/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por DNI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/client/dni/{dni}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"dni",
+								"{dni}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Listar productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"activo\",\r\n  \"subtype\": \"SAVINGS\",    // SAVINGS,Ahorro - CURRENT_ACCOUNT,Cuenta corriente - FIXED_TERM, Plazo fijo - PERSONAL_CREDIT,Crédito personal - BUSINESS_CREDIT,Crédito empresarial - CREDIT_CARD,Tarjeta de crédito\r\n  \"clientId\": \"684fd14beb24c200c8e97a2b\",\r\n  \"maintenanceFee\": 5.0,\r\n  \"balance\": 15500,\r\n  \"monthlyMovementLimit\": 20,\r\n  \"holders\": [\"684fd14beb24c200c8e97a2b\"],\r\n  \"authorizedSignatories\": [\"684fd14beb24c200c8e97a2b\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/product/6821a28d99bd0e0b58f8332c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"6821a28d99bd0e0b58f8332c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/product/6821a28d99bd0e0b58f8332c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"6821a28d99bd0e0b58f8332c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear tarjeta debito",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"68216dd57dd1de7f22ffc5ae\",\r\n  \"mainAccountId\": \"68237f3293da1e56884854d7\",\r\n  \"linkedAccountIds\": [\r\n    \"68237f3293da1e56884854d7\", \r\n    \"68237f9093da1e56884854d8\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/debit-card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"debit-card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tarjeta debito",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimientos",
+			"item": [
+				{
+					"name": "Listar movimientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/v1/movement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deposito ahorro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"68216dd57dd1de7f22ffc5ae\",\r\n  \"productId\": \"68237f3293da1e56884854d7\",\r\n  \"type\": \"DEPOSIT\",\r\n  \"amount\": 500.0,\r\n  \"date\": \"2025-05-13T15:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/movement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retiro ahorro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"682185ccc89154656fff8df1\",\r\n  \"productId\": \"68237f9093da1e56884854d8\",\r\n  \"type\": \"WITHDRAWAL\",\r\n  \"amount\": 1300.0,\r\n  \"date\": \"2025-05-13T15:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/movement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transferencia bancaria",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movement-service/api/v1/movement/transfer?fromProductId=68237f3293da1e56884854d7&toProductId=6823814593da1e56884854d9&amount=50.0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movement-service",
+								"api",
+								"v1",
+								"movement",
+								"transfer"
+							],
+							"query": [
+								{
+									"key": "fromProductId",
+									"value": "68237f3293da1e56884854d7"
+								},
+								{
+									"key": "toProductId",
+									"value": "6823814593da1e56884854d9"
+								},
+								{
+									"key": "amount",
+									"value": "50.0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reportes",
+			"item": [
+				{
+					"name": "Saldo promedio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/report/average-balance/68216dd57dd1de7f22ffc5ae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"average-balance",
+								"68216dd57dd1de7f22ffc5ae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comision total",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener ultimos 10 movimientos",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autenticacion",
+			"item": [
+				{
+					"name": "Registro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gateway",
+			"item": [
+				{
+					"name": "Comprobar Gateway",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc0OTcwMzM5OCwiZXhwIjoxNzQ5NzA0NTk4fQ.3DHDmnW-YCuuvEgDkQ4Fb-D_L6KBv4072PGegT7Acks",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/client-service/api/v1/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client-service",
+								"api",
+								"v1",
+								"client"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Yanki",
+			"item": [
+				{
+					"name": "Crear monedero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cardNumber\": \"685ba677a70f1a5f8d0e3852\",\r\n  \"documentType\": \"DNI\",\r\n  \"documentNumber\": \"94658115\",\r\n  \"phoneNumber\": \"+51996784523\",\r\n  \"email\": \"pedro@yanki.com\",\r\n  \"imei\": \"789654123012478\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/v1/yanki",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"yanki"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Linkear numero tarjeta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phoneNumber\": \"+51940558632\",\r\n  \"cardNumber\": \"684fd6cc3d4d6d02933bede4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/v1/yanki/link-card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"yanki",
+								"link-card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transferencia entre monederos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fromPhone\": \"+51999558858\",\r\n  \"toPhone\": \"+51940558632\",\r\n  \"amount\": 10.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/v1/yanki/transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"yanki",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener wallet yanki",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/v1/yanki/685c700445b6c440be8b19ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"yanki",
+								"685c700445b6c440be8b19ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener wallet por cardId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/v1/yanki/card/68237f3293da1e56884854d7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"yanki",
+								"card",
+								"68237f3293da1e56884854d7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BootCoin",
+			"item": [
+				{
+					"name": "Crear billetera",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documentType\": \"DNI\",\r\n    \"documentNumber\": \"12345678\",\r\n    \"phoneNumber\": \"987654321\",\r\n    \"email\": \"ejemplo@correo.com\",\r\n    \"associatedYankiWalletId\": null,\r\n    \"associatedAccountId\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8087/api/v1/bootcoin/wallets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"bootcoin",
+								"wallets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar tasa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"buyRate\": 3.80,\r\n  \"sellRate\": 3.70\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8087/api/v1/bootcoin/exchange-rate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"bootcoin",
+								"exchange-rate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar tasa",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Solicitar intercambio",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"requesterWalletId\": \"685c7111400ee82f10c3ef60\",\r\n  \"amount\": 100.0,\r\n  \"transferMethod\": \"YANKI\",\r\n  \"tradeType\": \"BUY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8087/api/v1/bootcoin/trades/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"bootcoin",
+								"trades",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aceptar solicitud",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8087/api/v1/bootcoin/trades/accept/685c7214400ee82f10c3ef64?sellerWalletId=685c7123400ee82f10c3ef63",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"bootcoin",
+								"trades",
+								"accept",
+								"685c7214400ee82f10c3ef64"
+							],
+							"query": [
+								{
+									"key": "sellerWalletId",
+									"value": "685c7123400ee82f10c3ef63"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comprobar Config Server",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
