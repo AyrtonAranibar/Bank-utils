@@ -1,0 +1,676 @@
+
+
+
+
+openapi: 3.0.0
+info:
+  title: Bank API - cliente
+  version: 1.0.0
+  description: API para la gestión de clientes
+
+servers:
+  - url: http://localhost:8081
+    description: Servicio de clientes
+  - url: http://localhost:8082
+    description: Servicio de productos
+  - url: http://localhost:8083
+    description: Servicio de movimientos
+  - url: http://localhost:8084
+    description: Servicio de reportes
+  - url: http://localhost:8085
+    description: Servicio de yanki
+  - url: http://localhost:8086
+    description: Servicio de bootcoin wallet
+
+tags:
+  - name: client
+    description: Servicios de los clientes
+  - name: product
+    description: Servicios de los productos
+  - name: movement
+    description: Servicios de los movimientos
+  - name: report
+    description: Servicios de reportes
+  - name: yanki
+    description: Servicios de yanki
+  - name: bootcoin
+    description: Servicios de bootcoin wallet
+
+paths:
+  /api/v1/client:
+    get:
+      tags:
+        - client
+      summary: Obtener todos los clientes
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientDto'
+
+    post:
+      tags:
+        - client
+      summary: Crear un cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientDto'
+      responses:
+        '201':
+          description: Cliente creado
+
+  /api/v1/client/{id}:
+    get:
+      tags:
+        - client
+      summary: Obtener un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cliente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientDto'
+        '404':
+          description: Cliente no encontrado
+
+    put:
+      tags:
+        - client
+      summary: Actualizar cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientDto'
+      responses:
+        '200':
+          description: Cliente actualizado
+
+    delete:
+      tags:
+        - client
+      summary: Eliminar cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cliente eliminado
+
+  /api/v1/client/dni/{dni}:
+    get:
+      tags:
+        - client
+      summary: Obtener un cliente por DNI
+      description: Retorna los datos de un cliente según su número de DNI
+      parameters:
+        - name: dni
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cliente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientDto'
+        '404':
+          description: Cliente no encontrado
+
+  /api/v1/product:
+    get:
+      tags:
+        - product
+      summary: Obtener todos los productos
+      responses:
+        '200':
+          description: Lista de productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDto'
+
+    post:
+      tags:
+        - product
+      summary: Crear producto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+      responses:
+        '201':
+          description: Producto creado
+
+  /api/v1/product/{id}:
+    get:
+      tags:
+        - product
+      summary: Obtener un producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '404':
+          description: Producto no encontrado
+
+    put:
+      tags:
+        - product
+      summary: Actualizar producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+      responses:
+        '200':
+          description: Producto actualizado
+
+    delete:
+      tags:
+        - product
+      summary: Eliminar producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Producto eliminado
+
+  /api/v1/movement:
+    get:
+      tags:
+        - movement
+      summary: Obtener todos los movimientos
+      responses:
+        '200':
+          description: Lista de movimientos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MovementDto'
+
+    post:
+      tags:
+        - movement
+      summary: Registrar movimiento
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovementDto'
+      responses:
+        '201':
+          description: Movimiento registrado
+
+  /api/v1/movement/{id}:
+    get:
+      tags:
+        - movement
+      summary: Obtener un movimiento por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Movimiento encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovementDto'
+        '404':
+          description: Movimiento no encontrado
+
+  /api/v1/report/average-balance/{clientId}:
+    get:
+      tags:
+        - report
+      summary: Obtener saldo promedio diario del cliente
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Saldo promedio diario
+          content:
+            application/json:
+              schema:
+                type: number
+                format: double
+
+  /api/v1/report/commission-report:
+    get:
+      tags:
+        - report
+      summary: Obtener reporte de comisiones cobradas por producto
+      parameters:
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Lista de reportes de comisiones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommissionReportDto'
+  /api/v1/yanki:
+    post:
+      tags: [ yanki ]
+      summary: Crear un monedero Yanki
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/YankiWalletDto'
+      responses:
+        '201':
+          description: Monedero creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YankiWalletDto'
+
+    get:
+      tags: [ yanki ]
+      summary: Obtener todos los monederos Yanki
+      responses:
+        '200':
+          description: Lista de monederos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/YankiWalletDto'
+
+  /api/v1/yanki/transfer:
+    post:
+      tags: [ yanki ]
+      summary: Transferir saldo entre monederos (celular → celular)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferRequest'
+      responses:
+        '200':
+          description: Transferencia realizada con éxito
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /api/v1/yanki/{phone}/link-card:
+    put:
+      tags: [ yanki ]
+      summary: Asociar tarjeta de débito a un monedero
+      parameters:
+        - name: phone
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Número de celular del monedero
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkCardRequest'
+      responses:
+        '200':
+          description: Monedero actualizado con tarjeta vinculada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YankiWalletDto'
+        '404':
+          description: Monedero no encontrado
+
+  /api/v1/bootcoin/trade:
+    post:
+      tags:
+        - bootcoin
+      summary: Crear una operación de compra o venta de Bootcoin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TradeRequestDto'
+      responses:
+        '201':
+          description: Operación de trade creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeResponseDto'
+
+  /api/v1/bootcoin/trade/{tradeId}:
+    get:
+      tags:
+        - bootcoin
+      summary: Obtener detalles de un trade específico
+      parameters:
+        - name: tradeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalles del trade
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeResponseDto'
+        '404':
+          description: Trade no encontrado
+
+  /api/v1/bootcoin/p2p-transfer:
+    post:
+      tags:
+        - bootcoin
+      summary: Realizar transferencia P2P de Bootcoin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/P2PTransferRequestDto'
+      responses:
+        '201':
+          description: Transferencia realizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/P2PTransferResponseDto'
+
+  /api/v1/bootcoin/wallet/{walletId}:
+    get:
+      tags:
+        - bootcoin
+      summary: Consultar el saldo de un wallet Bootcoin
+      parameters:
+        - name: walletId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Saldo del wallet
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  walletId:
+                    type: string
+                  balance:
+                    type: number
+        '404':
+          description: Wallet no encontrado
+
+components:
+  schemas:
+    ClientDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        dni:
+          type: string
+        type:
+          type: string
+          enum: [personal, empresarial]
+        subtype:
+          type: string
+          enum: [STANDARD, VIP, PYME]
+
+    ProductDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [activo, pasivo]
+        subtype:
+          type: string
+          enum: [ahorro, cuenta_corriente, plazo_fijo, credito_personal, credito_empresarial, tarjeta_credito]
+        clientId:
+          type: string
+        maintenanceFee:
+          type: number
+        monthlyMovementLimit:
+          type: integer
+          nullable: true
+        allowedMovementDay:
+          type: integer
+          nullable: true
+        creditLimit:
+          type: number
+          nullable: true
+        holders:
+          type: array
+          items:
+            type: string
+          nullable: true
+        authorizedSignatories:
+          type: array
+          items:
+            type: string
+          nullable: true
+
+    MovementDto:
+      type: object
+      properties:
+        id:
+          type: string
+        productId:
+          type: string
+        clientId:
+          type: string
+        type:
+          type: string
+          enum: [deposito, retiro]
+        amount:
+          type: number
+        date:
+          type: string
+          format: date-time
+        commission:
+          type: number
+          nullable: true
+
+    CommissionReportDto:
+      type: object
+      properties:
+        productId:
+          type: string
+        totalCommission:
+          type: number
+    YankiWalletDto:
+      type: object
+      properties:
+        documentType:
+          type: string
+          enum: [DNI, CEX, Pasaporte]
+        documentNumber:
+          type: string
+        phoneNumber:
+          type: string
+          example: "+51999988877"
+        imei:
+          type: string
+        email:
+          type: string
+          format: email
+        balance:
+          type: number
+          format: double
+        cardNumber:
+          type: string
+          nullable: true
+      required: [documentType, documentNumber, phoneNumber, imei, email]
+
+    TransferRequest:
+      type: object
+      properties:
+        fromPhone:
+          type: string
+          example: "+51999988877"
+        toPhone:
+          type: string
+          example: "+51940556622"
+        amount:
+          type: number
+          format: double
+      required: [fromPhone, toPhone, amount]
+
+    LinkCardRequest:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+      required: [cardNumber]
+
+    TradeRequestDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        type:
+          type: string
+          enum: [BUY, SELL]
+        amount:
+          type: number
+        price:
+          type: number
+        paymentMethod:
+          type: string
+          enum: [YANKI, ACCOUNT]
+
+    TradeResponseDto:
+      type: object
+      properties:
+        tradeId:
+          type: string
+        clientId:
+          type: string
+        type:
+          type: string
+          enum: [BUY, SELL]
+        amount:
+          type: number
+        price:
+          type: number
+        status:
+          type: string
+          enum: [PENDING, COMPLETED, CANCELLED]
+
+    P2PTransferRequestDto:
+      type: object
+      properties:
+        senderWalletId:
+          type: string
+        receiverWalletId:
+          type: string
+        amount:
+          type: number
+
+    P2PTransferResponseDto:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        senderWalletId:
+          type: string
+        receiverWalletId:
+          type: string
+        amount:
+          type: number
+        status:
+          type: string
+          enum: [SUCCESS, FAILED]
