@@ -14,7 +14,20 @@
 					"name": "Listar clientes",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/v1/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"client"
+							]
+						}
 					},
 					"response": []
 				},
@@ -25,7 +38,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Don Quijote de la Mancha\",\r\n  \"dni\": \"22164851\",\r\n  \"type\": \"personal\",\r\n  \"subtype\": \"STANDARD\",\r\n  \"isClient\": true\r\n}",
+							"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"dni\": \"75332511\",\r\n  \"type\": \"empresarial\", // empresarial, personal\r\n  \"subtype\": \"STANDARD\", //STANDARD, VIP, PYME\r\n  \"isClient\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -61,7 +74,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Pedro Jose Martinez Gomez\",\r\n    \"dni\": 94658115,\r\n    \"type\": \"personal\",\r\n    \"subtype\": \"VIP\",\r\n    \"isClient\": true\r\n}",
+							"raw": "{\r\n    \"name\": \"Pablo el millonario\",\r\n    \"dni\": \"35442565\",\r\n    \"type\": \"personal\",\r\n    \"subtype\": \"VIP\",\r\n    \"isClient\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -69,7 +82,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/v1/client/685b9eb0af9ce47bca28e7b7",
+							"raw": "http://localhost:8081/api/v1/client/686e1685f38fe027ca7d3208",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -79,7 +92,7 @@
 								"api",
 								"v1",
 								"client",
-								"685b9eb0af9ce47bca28e7b7"
+								"686e1685f38fe027ca7d3208"
 							]
 						}
 					},
@@ -113,7 +126,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/v1/client/dni/{dni}",
+							"raw": "http://localhost:8081/api/v1/client/dni/{{client-dni}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -124,7 +137,7 @@
 								"v1",
 								"client",
 								"dni",
-								"{dni}"
+								"{{client-dni}}"
 							]
 						}
 					},
@@ -163,7 +176,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"type\": \"activo\",\r\n  \"subtype\": \"SAVINGS\",    // SAVINGS,Ahorro - CURRENT_ACCOUNT,Cuenta corriente - FIXED_TERM, Plazo fijo - PERSONAL_CREDIT,Crédito personal - BUSINESS_CREDIT,Crédito empresarial - CREDIT_CARD,Tarjeta de crédito\r\n  \"clientId\": \"684fd14beb24c200c8e97a2b\",\r\n  \"maintenanceFee\": 5.0,\r\n  \"balance\": 15500,\r\n  \"monthlyMovementLimit\": 20,\r\n  \"holders\": [\"684fd14beb24c200c8e97a2b\"],\r\n  \"authorizedSignatories\": [\"684fd14beb24c200c8e97a2b\"]\r\n}",
+							"raw": "{\r\n  \"type\": \"activo\",\r\n  \"subtype\": \"SAVINGS\",    // SAVINGS,Ahorro - CURRENT_ACCOUNT,Cuenta corriente - FIXED_TERM, Plazo fijo - PERSONAL_CREDIT,Crédito personal - BUSINESS_CREDIT,Crédito empresarial - CREDIT_CARD,Tarjeta de crédito\r\n  \"clientId\": {{client-id}},\r\n  \"maintenanceFee\": 5.0,\r\n  \"balance\": 15500,\r\n  \"monthlyMovementLimit\": 20,\r\n  \"holders\": [{{client-id}}],\r\n  \"authorizedSignatories\": [{{client-id}}]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -285,7 +298,41 @@
 					"name": "Obtener tarjeta debito",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/debit-card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"debit-card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tarjetas debito",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/debit-card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"debit-card"
+							]
+						}
 					},
 					"response": []
 				}
@@ -395,6 +442,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1MjA3NTcxOCwiZXhwIjoxNzUyMDc2OTE4fQ.ItJJaAjgoevhYivUAgS0Yt6jf3OM3IPJfzy3mfm86IE",
 								"type": "text",
 								"disabled": true
 							}
@@ -409,12 +461,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/movement-service/api/v1/movement/transfer?fromProductId=68237f3293da1e56884854d7&toProductId=6823814593da1e56884854d9&amount=50.0",
+							"raw": "http://localhost:8083/movement-service/api/v1/movement/transfer?fromProductId=686e89a65fa0a515c95e49e3&toProductId=686e1b955fa0a515c95e49e1&amount=50.0",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8083",
 							"path": [
 								"movement-service",
 								"api",
@@ -425,11 +477,11 @@
 							"query": [
 								{
 									"key": "fromProductId",
-									"value": "68237f3293da1e56884854d7"
+									"value": "686e89a65fa0a515c95e49e3"
 								},
 								{
 									"key": "toProductId",
-									"value": "6823814593da1e56884854d9"
+									"value": "686e1b955fa0a515c95e49e1"
 								},
 								{
 									"key": "amount",
@@ -472,7 +524,35 @@
 					"name": "Comision total",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/report/commission-report?productId=6823814593da1e56884854d9&startDate=2025-05-01&endDate=2025-05-22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"commission-report"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "6823814593da1e56884854d9"
+								},
+								{
+									"key": "startDate",
+									"value": "2025-05-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-05-22"
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -480,7 +560,23 @@
 					"name": "Obtener ultimos 10 movimientos",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/report/card/{{card-id}}/movements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"card",
+								"{{card-id}}",
+								"movements"
+							]
+						}
 					},
 					"response": []
 				}
@@ -565,7 +661,7 @@
 			"name": "Gateway",
 			"item": [
 				{
-					"name": "Comprobar Gateway",
+					"name": "Comprobar Gateway clientes",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -587,6 +683,41 @@
 								"api",
 								"v1",
 								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comprobar Gateway productos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1MjE1ODg4NiwiZXhwIjoxNzUyMTYwMDg2fQ.U8K3aPdYdyclaBm_pgID6fz64CR7NfElVjp05qtXDeg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/product-service/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product-service",
+								"api",
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -814,7 +945,21 @@
 					"name": "Consultar tasa",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8087/api/v1/bootcoin/exchange-rate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"bootcoin",
+								"exchange-rate"
+							]
+						}
 					},
 					"response": []
 				},
@@ -892,7 +1037,19 @@
 			"name": "Comprobar Config Server",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/movement-service/default",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"movement-service",
+						"default"
+					]
+				}
 			},
 			"response": []
 		}
